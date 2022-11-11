@@ -6,14 +6,8 @@
     <link href="assets/favicon.ico" rel="shortcut icon" />
     <link rel="stylesheet" href="css/owfont-regular.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>momentum</title>
-    <script type="text/javascript">
-      function showHide(id) {
-        var style = document.getElementById(id).style;
-        if (style.visibility == "hidden") style.visibility = "visible";
-        else style.visibility = "hidden";
-      }
-    </script>
+    <title>График</title>
+    
   </head>
   <body>
     <header class="header">
@@ -144,9 +138,12 @@
       <div class="working_now">
         <span  class="what_brigade"></span>
       </div>
-      <div class="brigade number">
-        <input type="text" class="name" placeholder="[Enter name]" id="name" />
-      </div>
+      <form id="formIdName">
+        <p class="form_text"><b>Узнать № смены по дате:</b></p>
+        <input type="text"  id="add_id_user" placeholder="мм.дд.гг">
+        <button type="submit" >submit</button>
+    </form>
+      
     </main>
     <footer class="footer">
       <button class="change-quote"></button>
