@@ -212,6 +212,7 @@ background-color: rgb(100, 93, 93);
   top: 50%;
   margin-top: -16px;
   cursor: pointer;
+  
 }
 
 .slide-prev {
@@ -229,9 +230,12 @@ background-color: rgb(100, 93, 93);
   margin-bottom: 10px;
   font-family: 'Arial-MT';
   font-size: 70px;
-  letter-spacing: -4px;  
+  letter-spacing: -4px; 
+  margin-top: 0px; 
 }
-
+.date {
+  margin-top: -50px;
+}
 
 .date, .what_brigade {
   min-height: 28px;
@@ -247,28 +251,25 @@ background-color: rgb(100, 93, 93);
   min-height: 48px;
   width: 100vw;
   font-size: 30px;
+  margin-top: -20px;
 }
 
 .greeting {
   flex: 1;  
   padding: 10px
 }
-
-.name {
-  flex: 1;
-  max-width: 50%;
-  padding: 10px;
-  font-size: 40px;
-  text-align: left;
-  color: #fff;
-  background-color: transparent;
-  border: 0;
-  outline: 0;
+.working_now {
+  margin-top: 20px;
 }
 
-.name::placeholder {
-  color: #fff;
-  opacity: .6;
+
+
+#formIdName {
+  margin-top: 20px;
+
+}
+.form_text {
+  font-size: 20px;
 }
 
 .footer {
@@ -296,14 +297,21 @@ background-color: rgb(100, 93, 93);
 }
 
 @media (max-width: 768px) {
+  .main {
+    margin-top: 0px;
+  }
   .time {
     min-height: 80px;
-    font-size: 72px;    
+    font-size: 52px;    
+  }
+  .date {
+    margin-top: -30px;
   }
 
   .greeting-container {
     min-height: 40px;
-    font-size: 32px;
+    font-size: 24px;
+    
   }
 
   .greeting {
@@ -484,6 +492,14 @@ text-align: justify
   text-overflow: ellipsis;
   
 }
+.what_brigade {
+  font-size: 32px;
+  color: #48d487;
+  background-color: #696666;
+  
+}
+
+
 @media screen and (max-width: 1330px) {
   .play-list, .header__button {
     display: none;
@@ -497,5 +513,5 @@ text-align: justify
  min-width: 340px;
   min-height: 100vh;
  }
-
+ 
 }

@@ -45,6 +45,7 @@ function getTimeOfDay() {
 getTimeOfDay();
 
 //сохранение имени и города
+/*
 window.addEventListener("unload", () =>
   localStorage.setItem(
     "vals",
@@ -57,7 +58,7 @@ let vals = localStorage.getItem("vals")
   : "";
 let inp = document.querySelectorAll('input[type="text"]');
 for (let i = 0; i < inp.length; i++) vals[i] ? (inp[i].value = vals[i]) : "";
-
+*/
 //смена фона
 function getRandomNum(min, max) {
   min = Math.ceil(min);
@@ -109,6 +110,7 @@ slidePrev.forEach((i) => i.addEventListener("click", getSlidePrev, true));
 sliderNext.forEach((i) => i.addEventListener("click", getSlideNext, true));
 
 //погода
+/*
 //находим элементы
 const weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
@@ -137,7 +139,7 @@ city.addEventListener("change", () => {
 
 //сохраняем город
 document.addEventListener("DOMContentLoaded", getWeather);
-
+*/
 //Цитаты
 const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
@@ -157,7 +159,6 @@ change_quote.addEventListener("click", getQuotes); //смена цитаты п�
 //плеер
 
 import playList from "./playList.js";
-console.log(playList);
 const audio = new Audio();
 let time = document.querySelector(".audioTime"); // Берём аудио дорожку
 let play = document.querySelector(".play"); // Берём кнопку проигрывания
@@ -166,25 +167,24 @@ let next = document.querySelector(".play-next"); // Берём кнопку пе
 let isPlay = false;
 let playNum = 0;
 let playListContainer = document.querySelector(".play-list");
-const track_title = document.querySelector('.track_title');// название трека который играет
-let track_time = document.querySelector(".track_time")//время трека
+const track_title = document.querySelector(".track_title"); // название трека который играет
+let track_time = document.querySelector(".track_time"); //время трека
 
 function playAudio() {
   audio.src = playList[playNum].src;
   audio.currentTime = 0;
   //вкл и выкл одной кнопкой
   if (isPlay == false) {
-    track_title.textContent = playList[playNum].title;//показываем название трека при плей
+    track_title.textContent = playList[playNum].title; //показываем название трека при плей
     audio.play();
     isPlay = true;
   } else {
     audio.pause();
     isPlay = false;
-    track_title.textContent = playList[playNum].title;//показываем название трека при паузе и перелистывании
+    track_title.textContent = playList[playNum].title; //показываем название трека при паузе и перелистывании
   }
 }
 play.addEventListener("click", playAudio);
-
 
 //меняем кнопку плей при клике
 function toggleBtn() {
@@ -198,7 +198,7 @@ playList.forEach((element) => {
 
   li.classList.add("play-item"); //добавить этому элементу класс 'play-item'
   li.textContent = element.title; //добавить этому элементу текстовое содержимое - название трека
- 
+
   playListContainer.append(li); //добавить созданный элемент li в уже существующий на странице элемент ul с классом 'play-list'
 });
 
@@ -247,7 +247,6 @@ document.querySelector(".volume-up").addEventListener("click", () => {
 
 //прогресс бар и автовоспроизведение следующей песни
 let audioPlay = setInterval(function () {
-  
   // Получаем значение на какой секунде песня
   let audioTime = Math.round(audio.currentTime);
   // Получаем всё время песни
@@ -255,7 +254,11 @@ let audioPlay = setInterval(function () {
   // Назначаем ширину элементу time
   time.style.width = (audioTime * 100) / audioLength + "%";
   //выводим время трека
-  track_time.textContent = `${String(Math.floor(audio.currentTime / 60))}:${String(Math.floor(audio.currentTime % 60)).padStart(2, '0')} / ${playList[playNum].duration}`;
+  track_time.textContent = `${String(
+    Math.floor(audio.currentTime / 60)
+  )}:${String(Math.floor(audio.currentTime % 60)).padStart(2, "0")} / ${
+    playList[playNum].duration
+  }`;
   // Сравниваем, на какой секунде сейчас трек и всего сколько времени длится
   if (audioTime == audioLength && playNum < 11) {
     playNum++; // То Увеличиваем переменную
@@ -271,8 +274,6 @@ let audioPlay = setInterval(function () {
     isPlay = true;
   }
 }, 10);
-
-
 
 //настройки приложения
 
@@ -310,6 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 });
 /*-------------------------------*/
+
 function getNumberOfDays(start, end) {
   let result = "";
   const date1 = new Date(start);
@@ -325,30 +327,35 @@ function getNumberOfDays(start, end) {
   const diffInDays = Math.round(diffInTime / oneDay);
 
   if (diffInDays % 4 == 0) {
-    result = "3 смена в день. 1 смена в ночь";
-  }else if((diffInDays + 1) % 4 == 0)  {
-    result = "1 смена в день. 4 смена в ночь";
-  }else if((diffInDays + 2) % 4 == 0) {
-    result = "4 смена в день. 2 в ночь";
-  }else if ((diffInDays + 3) % 4 == 0) {
-     result = "2 смена в день. 3 в ночь";
+    result = { day: "3 смена в день", night: "1 смена в ночь" };
+  } else if ((diffInDays + 1) % 4 == 0) {
+    result = { day: "1 смена в день", night: "4 смена в ночь" };
+  } else if ((diffInDays + 2) % 4 == 0) {
+    result = { day: "4 смена в день", night: "2 смена в ночь" };
+  } else if ((diffInDays + 3) % 4 == 0) {
+    result = { day: "2 смена в день", night: "3 смена в ночь" };
+  }
+
+  return result;
 }
-  console.log(result);
-}
-getNumberOfDays('8.21.22', "12.09.22")
 
 //Выводим текущую смену
-function getTimeDay() {
-    const date = new Date();
-    const hours = date.getHours();
-    let text = "";
-    if (8 <= hours && hours < 20) {
-      text = "Сейчас работает";
-    } else if (20 <= hours) {
-      text = "Сейчас работает";
-    } else if (hours < 8) {
-      text = "Сейчас работает";
-    } 
-    document.querySelector(".what_brigade").textContent = text;
+function getBrigadeNumber() {
+  const date = new Date();
+  const dateNumber = new Date().toLocaleDateString();
+  const hours = date.getHours();
+  let text = "";
+  if (8 <= hours && hours < 20) {
+    text =
+      getNumberOfDays("11.02.22", dateNumber).day +
+      ", " +
+      getNumberOfDays("11.02.22", dateNumber).night;
+  } else if (20 <= hours) {
+    text = getNumberOfDays("11.02.22", dateNumber).night;
+  } else if (hours < 8) {
+    text = getNumberOfDays("11.01.22", dateNumber).night;
   }
-  getTimeDay();
+  document.querySelector(".what_brigade").textContent = text;
+}
+getBrigadeNumber();
+console.log(new Date().toLocaleDateString());
