@@ -35,9 +35,7 @@
         <ul class="play-list"></ul>
       </div>
 
-      <button id="callback-button" class="header__button">
-        Application Settings
-      </button>
+      
 
       <div class="weather" id="weather">
         <input
@@ -62,65 +60,12 @@
     <div class="modal" id="modal-1">
       <div class="modal__content">
         <button class="modal__close-button">
-          <img src="./assets/img/cross.jpg" alt="button" />
+          <img class="modal__close-button_pic" src="./assets/img/cross.jpg" alt="button" />
         </button>
         <!-- Контент модального окна-->
         <div class="modal__description">
-          <p class="modal__title">Settings:</p>
-
-          <p class="modal_li">
-            greeting hide<input
-              type="checkbox"
-              class="checkbox"
-              id="6"
-              onclick="showHide('greeting');"
-            />
-          </p>
-
-          <p class="modal_li">
-            time hide<input
-              type="checkbox"
-              class="checkbox"
-              id="1"
-              onclick="showHide('clock');"
-            />
-          </p>
-
-          <p class="modal_li">
-            date hide<input
-              type="checkbox"
-              class="checkbox"
-              id="2"
-              onclick="showHide('date');"
-            />
-          </p>
-
-          <p class="modal_li">
-            quote hide<input
-              type="checkbox"
-              class="checkbox"
-              id="3"
-              onclick="showHide('quote');"
-            />
-          </p>
-
-          <p class="modal_li">
-            weather hide<input
-              type="checkbox"
-              class="checkbox"
-              id="4"
-              onclick="showHide('weather');"
-            />
-          </p>
-
-          <p class="modal_li">
-            audio hide<input
-              type="checkbox"
-              class="checkbox"
-              id="5"
-              onclick="showHide('player');"
-            />
-          </p>
+          <input type="date"  class="enterDate">
+        <button class="modal_button">Ввод</button>
         </div>
       </div>
     </div>
@@ -138,12 +83,10 @@
       <div class="working_now">
         <span  class="what_brigade"></span>
       </div>
-      <form id="formIdName">
-        <p class="form_text"><b>Узнать № смены по дате:</b></p>
-        <input type="text"  id="add_id_user" placeholder="мм.дд.гг">
-        <button type="submit" >submit</button>
-    </form>
       
+       <button class="input_button"><b>Узнать № смены по дате</b></button>
+   
+    
     </main>
     <footer class="footer">
       <button class="change-quote"></button>

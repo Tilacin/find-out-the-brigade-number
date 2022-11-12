@@ -16,12 +16,13 @@ function showTime() {
 
   document.getElementById("clock").textContent = time; //время
   document.getElementById("date").textContent = currentDate; //дата
-
+  
   getTimeOfDay();
   setTimeout(
     showTime,
     1000
   ); /*вызов функции внутри неё самой с интервалом в 1 секунду */
+  
 }
 showTime();
 
@@ -281,7 +282,7 @@ let audioPlay = setInterval(function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Кнопка по которой происходит клик
-  let callBackButton = document.getElementById("callback-button");
+  let callBackButton = document.querySelector('.input_button')  //document.getElementById("callback-button");
 
   // Модальное окно, которое необходимо открыть
   let modal1 = document.getElementById("modal-1");
@@ -312,11 +313,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 /*-------------------------------*/
 
-function getNumberOfDays(start, end) {
+function getNumberOfDays(start, end ) {
   let result = "";
   const date1 = new Date(start);
   const date2 = new Date(end);
-
+ 
   // переводим милисекунды в день
   const oneDay = 1000 * 60 * 60 * 24;
 
@@ -328,21 +329,25 @@ function getNumberOfDays(start, end) {
 
   if (diffInDays % 4 == 0) {
     result = { day: "3 смена в день", night: "1 смена в ночь" };
-  } else if ((diffInDays + 1) % 4 == 0) {
+  } else if ((diffInDays - 1) % 4 == 0) {
     result = { day: "1 смена в день", night: "4 смена в ночь" };
-  } else if ((diffInDays + 2) % 4 == 0) {
+  } else if ((diffInDays - 2) % 4 == 0) {
     result = { day: "4 смена в день", night: "2 смена в ночь" };
-  } else if ((diffInDays + 3) % 4 == 0) {
+  } else if ((diffInDays - 3) % 4 == 0) {
     result = { day: "2 смена в день", night: "3 смена в ночь" };
   }
-
+  
   return result;
 }
+
+
+
+
 
 //Выводим текущую смену
 function getBrigadeNumber() {
   const date = new Date();
-  const dateNumber = new Date().toLocaleDateString();
+  let dateNumber = new Date().toLocaleDateString("en-US");
   const hours = date.getHours();
   let text = "";
   if (8 <= hours && hours < 20) {
@@ -353,9 +358,16 @@ function getBrigadeNumber() {
   } else if (20 <= hours) {
     text = getNumberOfDays("11.02.22", dateNumber).night;
   } else if (hours < 8) {
-    text = getNumberOfDays("11.01.22", dateNumber).night;
+    text = getNumberOfDays("11.03.22", dateNumber).night;
   }
   document.querySelector(".what_brigade").textContent = text;
 }
-getBrigadeNumber();
-console.log(new Date().toLocaleDateString());
+setInterval(getBrigadeNumber() ,2000);
+
+
+
+
+//Узнаём какие смены работают в определённую дату
+
+
+  
