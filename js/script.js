@@ -16,13 +16,12 @@ function showTime() {
 
   document.getElementById("clock").textContent = time; //время
   document.getElementById("date").textContent = currentDate; //дата
-  
+
   getTimeOfDay();
   setTimeout(
     showTime,
     1000
   ); /*вызов функции внутри неё самой с интервалом в 1 секунду */
-  
 }
 showTime();
 
@@ -282,7 +281,7 @@ let audioPlay = setInterval(function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Кнопка по которой происходит клик
-  let callBackButton = document.querySelector('.input_button')  //document.getElementById("callback-button");
+  let callBackButton = document.querySelector(".input_button"); //document.getElementById("callback-button");
 
   // Модальное окно, которое необходимо открыть
   let modal1 = document.getElementById("modal-1");
@@ -313,11 +312,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 /*-------------------------------*/
 
-function getNumberOfDays(start, end ) {
+function getNumberOfDays(start, end) {
   let result = "";
   const date1 = new Date(start);
   const date2 = new Date(end);
- 
+
   // переводим милисекунды в день
   const oneDay = 1000 * 60 * 60 * 24;
 
@@ -328,21 +327,37 @@ function getNumberOfDays(start, end ) {
   const diffInDays = Math.round(diffInTime / oneDay);
 
   if (diffInDays % 4 == 0) {
-    result = { day: "3 смена в день", night: "1 смена в ночь" };
-  } else if ((diffInDays - 1) % 4 == 0) {
-    result = { day: "1 смена в день", night: "4 смена в ночь" };
-  } else if ((diffInDays - 2) % 4 == 0) {
-    result = { day: "4 смена в день", night: "2 смена в ночь" };
-  } else if ((diffInDays - 3) % 4 == 0) {
-    result = { day: "2 смена в день", night: "3 смена в ночь" };
+    result = {
+      day: "3 смена в день",
+      night: "1 смена в ночь",
+      extraShiftDay: "подработка в день: 2 смена",
+      extraShiftNight: "подработка в ночь: 4 смена"
+    };
+  } else if ((diffInDays + 1) % 4 == 0) {
+    result = {
+      day: "1 смена в день",
+      night: "4 смена в ночь",
+      extraShiftDay: "подработка в день: 3 смена",
+      extraShiftNight: "подработка в ночь: 2 смена"
+    };
+  } else if ((diffInDays + 2) % 4 == 0) {
+    result = {
+      day: "4 смена в день",
+      night: "2 смена в ночь",
+      extraShiftDay: "подработка в день: 1 смена",
+      extraShiftNight: "подработка в ночь: 3 смена"
+    };
+  } else if ((diffInDays + 3) % 4 == 0) {
+    result = {
+      day: "2 смена в день",
+      night: "3 смена в ночь",
+      extraShiftDay: "подработка в день: 4 смена",
+      extraShiftNight: "подработка в ночь: 1 смена"
+    };
   }
-  
+
   return result;
 }
-
-
-
-
 
 //Выводим текущую смену
 function getBrigadeNumber() {
@@ -362,12 +377,38 @@ function getBrigadeNumber() {
   }
   document.querySelector(".what_brigade").textContent = text;
 }
-setInterval(getBrigadeNumber() ,2000);
-
-
-
+setInterval(getBrigadeNumber(), 2000);
 
 //Узнаём какие смены работают в определённую дату
+var dateEntered;
+document.querySelector(".enterDate").addEventListener("change", function () {
+  var input = this.value;
+  dateEntered = new Date(input).toLocaleDateString("en-US");
 
+  return dateEntered;
+});
+let modalButton = document.querySelector(".modal_button");
+modalButton.addEventListener("click", () => {
+  let valueDate = document.getElementById("inputDate").value;
 
-  
+  document.querySelector(".modal_div_day").textContent = getNumberOfDays(
+    "11.02.22",
+    dateEntered
+  ).day;
+  document.querySelector(".modal_div_night").textContent = getNumberOfDays(
+    "11.02.22",
+    dateEntered
+  ).night;
+  document.querySelector(".modal_div_extraShiftDay").textContent = getNumberOfDays(
+    "11.02.22",
+    dateEntered
+  ).extraShiftDay;
+  document.querySelector(".modal_div_extraShiftNight").textContent = getNumberOfDays(
+    "11.02.22",
+    dateEntered
+  ).extraShiftNight;
+
+  if (!Date.parse(valueDate)) {
+    document.querySelector(".modal_div_day").textContent = "Введите дату";
+  }
+});

@@ -64,8 +64,14 @@
         </button>
         <!-- Контент модального окна-->
         <div class="modal__description">
-          <input type="date"  class="enterDate">
+          <input type="date"  class="enterDate" id="inputDate">
         <button class="modal_button">Ввод</button>
+        </div>
+        <div class="modal_block">
+          <div class="modal_div_day modal_div"></div>
+          <div class="modal_div_night modal_div"></div>
+          <div class="modal_div_extraShiftDay modal_div"></div>
+          <div class="modal_div_extraShiftNight modal_div"></div>
         </div>
       </div>
     </div>
@@ -84,7 +90,7 @@
         <span  class="what_brigade"></span>
       </div>
       
-       <button class="input_button"><b>Узнать № смены по дате</b></button>
+       <button class="input_button" ><b>Узнать № смены по дате</b></button>
    
     
     </main>
@@ -97,5 +103,6 @@
     </footer>
 
     <script type="module" src="js/script.js"></script>
+    
   </body>
 </html>
