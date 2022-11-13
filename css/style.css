@@ -568,8 +568,5 @@ max-height: 50px;
   .name {
     display: none;
   }
-  body {
-    min-width: 340px;
-    min-height: 100vh;
-  }
+  
 }
