@@ -110,7 +110,7 @@ slidePrev.forEach((i) => i.addEventListener("click", getSlidePrev, true));
 sliderNext.forEach((i) => i.addEventListener("click", getSlideNext, true));
 
 //погода
-/*
+
 //находим элементы
 const weatherIcon = document.querySelector(".weather-icon");
 const temperature = document.querySelector(".temperature");
@@ -118,10 +118,11 @@ const weatherDescription = document.querySelector(".weather-description");
 const city = document.querySelector(".city");
 const wind = document.querySelector(".wind");
 const humidity = document.querySelector(".humidity");
-
+/*
 //вывод данных погоды на экран
 async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lange=en&APPID=5221ede1c1f8decc96c022c86753dd10&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lange=ru&APPID=5221ede1c1f8decc96c022c86753dd10&units=metric`;
+  
   const res = await fetch(url);
   const data = await res.json();
   weatherIcon.className = "weather-icon owf";
@@ -377,7 +378,7 @@ function getBrigadeNumber() {
   }
   document.querySelector(".what_brigade").textContent = text;
 }
-setInterval(getBrigadeNumber(), 2000);
+setInterval(getBrigadeNumber, 5000);
 
 //Узнаём какие смены работают в определённую дату
 var dateEntered;
