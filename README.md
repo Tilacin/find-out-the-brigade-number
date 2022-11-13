@@ -1,2 +1,2 @@
 # find-out-the-brigade-number
-https://github.com/Tilacin/find-out-the-brigade-number/deployments/activity_log?environment=github-pages
+https://tilacin.github.io/find-out-the-brigade-number/
