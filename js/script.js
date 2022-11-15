@@ -44,22 +44,7 @@ function getTimeOfDay() {
 }
 getTimeOfDay();
 
-//сохранение имени и города
-/*
-window.addEventListener("unload", () =>
-  localStorage.setItem(
-    "vals",
-    [...document.querySelectorAll('input[type="text"]')].map((e, i) => e.value)
-  )
-);
-
-let vals = localStorage.getItem("vals")
-  ? localStorage.getItem("vals").split`,`
-  : "";
-let inp = document.querySelectorAll('input[type="text"]');
-for (let i = 0; i < inp.length; i++) vals[i] ? (inp[i].value = vals[i]) : "";
-*/
-//смена фона
+//вывод фоновых изображений
 function getRandomNum(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -109,7 +94,6 @@ const getSlidePrev = () => {
 slidePrev.forEach((i) => i.addEventListener("click", getSlidePrev, true));
 sliderNext.forEach((i) => i.addEventListener("click", getSlideNext, true));
 
-//погода
 
 //находим элементы
 const weatherIcon = document.querySelector(".weather-icon");
@@ -118,29 +102,7 @@ const weatherDescription = document.querySelector(".weather-description");
 const city = document.querySelector(".city");
 const wind = document.querySelector(".wind");
 const humidity = document.querySelector(".humidity");
-/*
-//вывод данных погоды на экран
-async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lange=ru&APPID=5221ede1c1f8decc96c022c86753dd10&units=metric`;
-  
-  const res = await fetch(url);
-  const data = await res.json();
-  weatherIcon.className = "weather-icon owf";
-  weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
-  weatherDescription.textContent = data.weather[0].description;
-  wind.textContent = `Wind speed: ${data.wind.speed.toFixed(0)} m/s`;
-  humidity.textContent = `Humidity: ${data.main.humidity} %`;
-}
-//смена погоды
-city.addEventListener("change", () => {
-  localStorage.setItem("city", city.value);
-  getWeather();
-});
 
-//сохраняем город
-document.addEventListener("DOMContentLoaded", getWeather);
-*/
 //Цитаты
 const quote = document.querySelector(".quote");
 const author = document.querySelector(".author");
@@ -296,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
   callBackButton.onclick = function (e) {
     e.preventDefault();
     modal1.classList.add("modal_active");
+
   };
 
   closeButton.onclick = function (e) {
@@ -378,7 +341,7 @@ function getBrigadeNumber() {
   }
   document.querySelector(".what_brigade").textContent = text;
 }
-setInterval(getBrigadeNumber, 5000);
+setInterval(getBrigadeNumber, 1000);
 
 //Узнаём какие смены работают в определённую дату
 var dateEntered;
@@ -391,7 +354,7 @@ document.querySelector(".enterDate").addEventListener("change", function () {
 let modalButton = document.querySelector(".modal_button");
 modalButton.addEventListener("click", () => {
   let valueDate = document.getElementById("inputDate").value;
-
+  
   document.querySelector(".modal_div_day").textContent = getNumberOfDays(
     "11.02.22",
     dateEntered
@@ -413,3 +376,9 @@ modalButton.addEventListener("click", () => {
     document.querySelector(".modal_div_day").textContent = "Введите дату";
   }
 });
+//при выходе из модального окна обнуляем введённую дату и текст
+document.querySelector(".input_button").addEventListener("click", () => {
+document.querySelector(".enterDate").value = '';
+document.querySelectorAll(".modal_div").forEach(div => div.textContent = '');
+}
+)
